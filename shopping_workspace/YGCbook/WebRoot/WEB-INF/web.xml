@@ -595,6 +595,24 @@
   	<location>/error500.jsp</location>
   </error-page>
   -->
+  
+  
+  <servlet>
+    <servlet-name>register</servlet-name>
+    <servlet-class>co.jp.netwisdom.servlet.RegisterServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
   <welcome-file-list>
     <welcome-file>FindBookTypeServlet</welcome-file>
   </welcome-file-list>
