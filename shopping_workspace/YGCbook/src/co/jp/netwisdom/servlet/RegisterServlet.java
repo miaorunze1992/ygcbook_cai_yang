@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.jp.netwisdom.dao.HobbyDao;
 import co.jp.netwisdom.dao.UserinfoDao;
+import co.jp.netwisdom.entity.Hobby;
+import co.jp.netwisdom.entity.Userinfo;
 
 public class RegisterServlet extends HttpServlet{
 
@@ -22,15 +24,15 @@ public class RegisterServlet extends HttpServlet{
 		String major = req.getParameter("major");
 		String intro = req.getParameter("intro");
 		
+		Userinfo userinfo = new Userinfo(username,password,sex,major,intro);
+
 		String[] hobby = req.getParameterValues("hobby");
-		
 		UserinfoDao dao = new UserinfoDao();
-		
-		boolean rs = dao.insertUserinfo(username, password, sex, major, intro);
+		boolean rs = dao.insertUserinfo(userinfo);
 		
 		HobbyDao daoH = new HobbyDao();
-		
-		boolean rsH = daoH.insertHobby(username, hobby);
+		Hobby hobbyEntity = new Hobby(username, null, hobby);
+		boolean rsH = daoH.insertHobby(hobbyEntity);
 		
 		if(rs && rsH){
 			// request方式

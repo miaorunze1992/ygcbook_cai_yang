@@ -3,17 +3,17 @@ package co.jp.netwisdom.dao;
 import java.sql.SQLException;
 
 import cn.key.dbManager.JdbcTemplate;
+import co.jp.netwisdom.entity.Userinfo;
 
 public class UserinfoDao {
 	
 	private JdbcTemplate jdbcObj = new JdbcTemplate();
 	
 	
-	public boolean insertUserinfo(String username,String password,String sex,String major,String intro){
+	public boolean insertUserinfo(Userinfo userinfo){
 		int row = 0;
 		String sql = "insert into userinfo (username,password,sex,major,intro) values (?,?,?,?,?)";
-		Object[] objV = {username,password,sex,major,intro};
-		
+		Object[] objV = userinfo.getObjArray();
 		try{
 			row = jdbcObj.updata(sql, objV);
 		}catch(SQLException e){
@@ -21,11 +21,7 @@ public class UserinfoDao {
 		}catch(ClassNotFoundException e){
 			
 		}
-		
 		return (row == 1);
-		
-	
-		//jdbcObj.updata(sql, jdbcObj);
 	}
 
 	
