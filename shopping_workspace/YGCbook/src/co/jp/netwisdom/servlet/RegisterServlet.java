@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.jp.netwisdom.dao.HobbyDao;
 import co.jp.netwisdom.dao.UserinfoDao;
 
 public class RegisterServlet extends HttpServlet{
@@ -27,11 +28,19 @@ public class RegisterServlet extends HttpServlet{
 		
 		boolean rs = dao.insertUserinfo(username, password, sex, major, intro);
 		
-		if(rs){
-			System.out.println("插入成功");
+		HobbyDao daoH = new HobbyDao();
+		
+		boolean rsH = daoH.insertHobby(username, hobby);
+		
+		if(rs && rsH){
+			// request方式
+			req.getRequestDispatcher("/registerSuccess.jsp").forward(req, resp);;
 		}else{
-			System.out.println("插入shibai");
+			// response方式          
+			resp.sendRedirect("/YGCbook/registerFail.jsp");
 		}
+		
+		
 	}
 
 	@Override
