@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet{
 		
 		if(rs && rsH){
 			// request方式
-			req.getRequestDispatcher("/registerSuccess.jsp").forward(req, resp);;
+			req.getRequestDispatcher("/registerSuccess.jsp").forward(req, resp);
 		}else{
 			// response方式          
 			resp.sendRedirect("/YGCbook/registerFail.jsp");
